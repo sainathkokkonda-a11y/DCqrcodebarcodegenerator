@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code & Barcode Generator</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- External Advanced Libraries (Free & CDN Hosted) -->
+    <script type="text/javascript" src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+
+<div class="tool-card">
+  <!-- Header -->
+  <div class="card-header">
+    <h2>QR Code & Barcode Generator</h2>
+    <p>Generate styled QR Codes with Logo & HD Download</p>
+  </div>
+
+  <div class="card-body">
+    <!-- Select Type -->
+    <div class="input-group">
+      <label for="code-type">Select Code Type</label>
+      <select id="code-type" onchange="toggleInputs()">
+        <option value="qr">QR Code (Custom Dots / Logo / URL)</option>
+        <option value="barcode">Barcode (Numbers / Code 128)</option>
+      </select>
+    </div>
+
+    <!-- Text Input -->
+    <div class="input-group">
+      <label for="code-input">Enter Text or Numbers</label>
+      <input type="text" id="code-input" placeholder="e.g. https://yourwebsite.com" value="https://example.com" />
+    </div>
+
+    <!-- QR Customization Options (Visible only for QR) -->
+    <div id="qr-custom-options">
+      <div class="input-group">
+        <label for="dot-style">QR Dot Pattern Style</label>
+        <select id="dot-style">
+          <option value="square">Square (Default)</option>
+          <option value="dots">Dots (Circular)</option>
+          <option value="rounded">Rounded</option>
+          <option value="classy">Classy</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="qr-color">QR Code Color</label>
+        <input type="color" id="qr-color" value="#0d47a1" style="height: 40px; padding: 2px; cursor: pointer;" />
+      </div>
+
+      <div class="input-group">
+        <label for="logo-input">Upload Center Logo (Optional)</label>
+        <input type="file" id="logo-input" accept="image/*" style="padding: 6px; font-size: 12px;" />
+      </div>
+    </div>
+
+    <!-- Download Quality Option -->
+    <div class="input-group" id="quality-group">
+      <label for="download-quality">Download Quality / Resolution</label>
+      <select id="download-quality">
+        <option value="300">Standard (300 x 300 px)</option>
+        <option value="600" selected>HD High Quality (600 x 600 px)</option>
+        <option value="1200">Ultra HD 4K (1200 x 1200 px)</option>
+      </select>
+    </div>
+
+    <!-- Action Button -->
+    <button class="calc-btn" onclick="generateCode()">Generate Code</button>
+
+    <!-- Results / Output Box -->
+    <div class="result-box">
+      <div class="res-title">Generated Output</div>
+      <div id="output-container" class="output-wrapper">
+        <div id="qrcode"></div>
+        <svg id="barcode" style="display: none;"></svg>
+      </div>
+      <button class="download-btn" id="download-btn" onclick="downloadImage()" style="display: none;">Download PNG</button>
+    </div>
+  </div>
+</div>
+
+<!-- External JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
